@@ -67,13 +67,14 @@ Mounted、Updated、Unmounted
 1. 调用Component的setState方法即可 
 2. 将setTimeout中的this取到赋给_self或者使用ES5的bind()方法，略
 
-~~~  发现SetState的值每次变化都会导致component从当前的状态进入到Updating阶段，从而重新render
+ 发现SetState的值每次变化都会导致component从当前的状态进入到Updating阶段，从而重新render
+
 
 
 * 在 Updating这个阶段
 	* 首先的两个方法不用说，`ComponentWillUpdate`和`ComponentDidUpdate`这之间就是Render的一个过程
 	* 其中一个就是`ComponentWillReceiveProps`，当一个Mounted的Component将要接收一个新的props时，这个函数 会被调用，函数参数就是新的props对象，我们可以在函数体中比较这个函数参数和this.props从而执行一些例如修改state的操作
-	 * 另一个就是shouldComponentUpdate,当一个Mounted的Component已经接收到新的props和state之后 ，判断 是否有必要修改DOM结构，这个函数 的参数 有两个 新的props对象和新的state对象，分别对比 this.props 和this.state来决定 是否更新DOM结构，此函数 返回true表示 更新，返回false表示 路过这次更新
+	* 另一个就是shouldComponentUpdate,当一个Mounted的Component已经接收到新的props和state之后 ，判断 是否有必要修改DOM结构，这个函数 的参数 有两个 新的props对象和新的state对象，分别对比 this.props 和this.state来决定 是否更新DOM结构，此函数 返回true表示 更新，返回false表示 路过这次更新
 	 
   这里的几个方法很少用到
 
